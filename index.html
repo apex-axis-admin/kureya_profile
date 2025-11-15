@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brandon K - Full Stack Developer</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>100 Consultant Interview Questions</title>
     <style>
         * {
             margin: 0;
@@ -13,665 +13,1389 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             line-height: 1.6;
             color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            min-height: 100vh;
+            background: #f5f5f5;
+            padding: 20px;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 20px;
-        }
-
-        .header {
-            text-align: center;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
+            background: white;
             padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.2em;
+        }
+
+        .subtitle {
+            color: #7f8c8d;
             margin-bottom: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .profile-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            background: linear-gradient(45deg, #F75C7E, #ff6b9d, #ffd93d);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: white;
-        }
-
-        .typing-text {
-            font-size: 1.5rem;
-            background: linear-gradient(45deg, #F75C7E, #ff6b9d, #ffd93d);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            padding: 8px 16px;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .social-links a:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
         }
 
         .section {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
         }
 
-        .section h2 {
-            background: linear-gradient(45deg, #667eea, #764ba2, #F75C7E);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .section-title {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 6px;
+            font-size: 1.3em;
             margin-bottom: 20px;
-            font-size: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            cursor: pointer;
+            user-select: none;
         }
 
-        .about-text {
-            font-size: 1.1rem;
-            color: #666;
+        .section-title:hover {
+            transform: translateX(5px);
+        }
+
+        .section-title::before {
+            content: '▼ ';
+            transition: transform 0.3s;
+            display: inline-block;
+        }
+
+        .section-title.collapsed::before {
+            transform: rotate(-90deg);
+        }
+
+        .questions-container {
+            display: block;
+        }
+
+        .questions-container.hidden {
+            display: none;
+        }
+
+        .question-item {
+            margin-bottom: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .question-item:hover {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .question {
+            padding: 15px 20px;
+            background: #f8f9fa;
+            cursor: pointer;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+
+        .question:hover {
+            background: #e9ecef;
+        }
+
+        .question::before {
+            content: 'Q: ';
+            color: #667eea;
+            font-weight: 700;
+            margin-right: 5px;
+        }
+
+        .answer {
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+            display: none;
             line-height: 1.8;
         }
 
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 25px;
-            margin-top: 20px;
+        .answer.show {
+            display: block;
+            animation: slideDown 0.3s ease;
         }
 
-        .project-card {
-            background: linear-gradient(135deg, #f8f9ff 0%, #e8f2ff 50%, #fff0f8 100%);
-            border-radius: 12px;
-            padding: 25px;
-            border-left: 4px solid;
-            border-image: linear-gradient(45deg, #667eea, #F75C7E, #ffd93d) 1;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(45deg, rgba(102, 126, 234, 0.1), rgba(247, 92, 126, 0.1), rgba(255, 217, 61, 0.1));
-            border-radius: 50%;
-            transform: translate(50%, -50%);
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-        }
-
-        .project-title {
-            color: #4a5568;
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .project-description {
-            color: #666;
-            margin-bottom: 15px;
-            font-style: italic;
-        }
-
-        .project-features {
-            list-style: none;
-            margin-bottom: 20px;
-        }
-
-        .project-features li {
-            color: #555;
-            margin-bottom: 5px;
-            padding-left: 20px;
-            position: relative;
-        }
-
-        .project-features li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            background: linear-gradient(45deg, #667eea, #F75C7E);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: bold;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn {
-            padding: 8px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .btn-primary {
-            background: linear-gradient(45deg, #667eea, #F75C7E);
-            color: white;
-        }
-
-        .btn-secondary {
-            background: transparent;
+        .answer strong {
             color: #667eea;
-            border: 2px solid;
-            border-image: linear-gradient(45deg, #667eea, #F75C7E) 1;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-        }
-
-        .tech-badge {
-            background: linear-gradient(45deg, #667eea, #764ba2, #F75C7E, #ffd93d);
-            background-size: 300% 300%;
-            animation: gradientShift 3s ease infinite;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .stat-card {
-            background: linear-gradient(135deg, #667eea, #764ba2, #F75C7E);
-            color: white;
-            padding: 25px;
-            border-radius: 12px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transform: rotate(45deg);
-            animation: shimmer 2s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) rotate(45deg); }
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .goals-list {
-            list-style: none;
-        }
-
-        .goals-list li {
-            background: linear-gradient(135deg, #f8f9ff, #fff0f8, #fffbf0);
-            margin-bottom: 10px;
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 4px solid;
-            border-image: linear-gradient(45deg, #667eea, #F75C7E, #ffd93d) 1;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .contact-item {
-            background: linear-gradient(45deg, #667eea, #764ba2, #F75C7E, #ffd93d);
-            background-size: 300% 300%;
-            animation: gradientShift 4s ease infinite;
-            color: white;
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .contact-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
 
         .footer {
-            text-align: center;
-            color: rgba(255, 255, 255, 0.8);
             margin-top: 40px;
-            padding: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .social-links {
-                flex-wrap: wrap;
-            }
-            
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .header {
-                padding: 30px 20px;
-            }
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
+            text-align: center;
+            color: #7f8c8d;
+            font-style: italic;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
-        <!-- Header Section -->
-        <header class="header">
-            <div class="profile-img">
-                <i class="fas fa-code"></i>
-            </div>
-            <h1 style="color: white; font-size: 2.5rem; margin-bottom: 10px;">Hi there, I'm Brandon K! 👋</h1>
-            <div class="typing-text">Full Stack Developer | Web Development Enthusiast | Always Learning 🚀</div>
-            
-            <div class="social-links">
-                <a href="https://github.com/tadiekvx">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
-                <a href="https://www.linkedin.com/in/bkureya/">
-                    <i class="fab fa-linkedin"></i> LinkedIn
-                </a>
-                <a href="mailto:tadiekureya@gmail.com">
-                    <i class="fas fa-envelope"></i> Email
-                </a>
-                <a href="https://twitter.com/tadiekvx">
-                    <i class="fab fa-twitter"></i> Twitter
-                </a>
-            </div>
-        </header>
+        <h1>100 Consultant Interview Questions & Answers</h1>
+        <p class="subtitle">Senior Associate Position (3-5 Years Experience)</p>
+        <div class="note"><strong>How to use:</strong> Click section titles to expand/collapse. Click questions to show
+            answers.</div>
 
-        <!-- About Section -->
-        <section class="section">
-            <h2><i class="fas fa-user"></i> About Me</h2>
-            <p class="about-text">
-                I'm a passionate developer with a love for creating elegant solutions to complex problems. I specialize in web development with experience across the full stack, from building responsive front-end interfaces to architecting scalable back-end systems. With expertise in modern technologies and a commitment to clean, efficient code, I bring ideas to life through innovative web applications.
-            </p>
-        </section>
-
-        <!-- Featured Projects Section -->
-        <section class="section">
-            <h2><i class="fas fa-rocket"></i> Featured Projects</h2>
-            <div class="projects-grid">
-                <!-- Retail App -->
-                <div class="project-card">
-                    <h3 class="project-title">
-                        <i class="fas fa-shopping-cart"></i>
-                        Retail App
-                    </h3>
-                    <p class="project-description">Modern retail management system with comprehensive inventory and sales tracking</p>
-                    <ul class="project-features">
-                        <li>Point-of-sale system with barcode scanning</li>
-                        <li>Real-time inventory management</li>
-                        <li>Sales reporting and analytics</li>
-                        <li>Multi-user support with role-based permissions</li>
-                        <li>Customer management and loyalty programs</li>
-                    </ul>
-                    <div class="project-links">
-                        <a href="https://github.com/tadiekvx/retail-app" class="btn btn-primary">
-                            <i class="fab fa-github"></i> View Code
-                        </a>
+        <!-- BEHAVIORAL & FIT QUESTIONS -->
+        <div class="section">
+            <h2 class="section-title" onclick="toggleSection(this)">Behavioral & Fit Questions</h2>
+            <div class="questions-container">
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Walk me through your resume.</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I started my career at [Company] as an analyst where I spent two
+                            years working on market analysis and strategic planning projects across retail and
+                            healthcare sectors. I was promoted to consultant after demonstrating leadership on a $5M
+                            client engagement. Currently, as a senior consultant, I lead project workstreams and manage
+                            junior team members while delivering strategic recommendations to C-suite clients. This
+                            progression has given me expertise in data analysis, client relationship management, and
+                            team leadership—all of which I'm excited to bring to this senior associate role."</p>
                     </div>
                 </div>
-
-                <!-- Remote Care -->
-                <div class="project-card">
-                    <h3 class="project-title">
-                        <i class="fas fa-heartbeat"></i>
-                        Remote Care
-                    </h3>
-                    <p class="project-description">Healthcare application for remote patient monitoring and telemedicine</p>
-                    <ul class="project-features">
-                        <li>Video consultation capabilities</li>
-                        <li>Patient health data tracking</li>
-                        <li>Prescription management</li>
-                        <li>Appointment scheduling system</li>
-                        <li>Secure medical records storage</li>
-                    </ul>
-                    <div class="project-links">
-                        <a href="https://github.com/tadiekvx/remote-care" class="btn btn-primary">
-                            <i class="fab fa-github"></i> View Code
-                        </a>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Why consulting?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I'm drawn to consulting because it combines three things I'm
+                            passionate about: solving complex business problems, continuous learning across industries,
+                            and making tangible impact. In my current role, I've worked across five different industries
+                            in three years, which has accelerated my learning exponentially. I thrive in environments
+                            where every project presents new challenges and requires creative problem-solving."</p>
                     </div>
                 </div>
-
-                <!-- Bank Management System -->
-                <div class="project-card">
-                    <h3 class="project-title">
-                        <i class="fas fa-university"></i>
-                        Bank Management System
-                    </h3>
-                    <p class="project-description">Comprehensive banking solution for modern financial institutions</p>
-                    <ul class="project-features">
-                        <li>Account management and transactions</li>
-                        <li>Loan processing and management</li>
-                        <li>Secure authentication and authorization</li>
-                        <li>Transaction history and reporting</li>
-                        <li>Compliance and audit trail features</li>
-                    </ul>
-                    <div class="project-links">
-                        <a href="https://github.com/tadiekvx/BankManagement" class="btn btn-primary">
-                            <i class="fab fa-github"></i> View Code
-                        </a>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Why are you interested in our firm specifically?
+                    </div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "Three key reasons: First, your firm's reputation for excellence in
+                            [specific practice area] aligns with my experience and interests. Second, I'm impressed by
+                            your focus on [specific differentiator]. I spoke with [name] from your firm who shared
+                            insights about your collaborative culture. Finally, your recent work demonstrates the type
+                            of strategic, high-impact engagements I want to be part of."</p>
                     </div>
                 </div>
-
-                <!-- Brundtland -->
-                <div class="project-card">
-                    <h3 class="project-title">
-                        <i class="fas fa-globe"></i>
-                        Brundtland.co.za
-                    </h3>
-                    <p class="project-description">Professional corporate website with modern design and functionality</p>
-                    <ul class="project-features">
-                        <li>Responsive design for all devices</li>
-                        <li>SEO optimized structure</li>
-                        <li>Contact forms and CMS integration</li>
-                        <li>Performance optimized loading</li>
-                        <li>Professional corporate branding</li>
-                    </ul>
-                    <div class="project-links">
-                        <a href="https://www.brundtland.co.za/" class="btn btn-primary">
-                            <i class="fas fa-external-link-alt"></i> Visit Site
-                        </a>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">What are your greatest strengths?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "My greatest strengths are analytical problem-solving and
+                            stakeholder management. On a recent healthcare pricing project, I analyzed 2 million data
+                            points to identify $15M in revenue optimization opportunities. I excel at translating
+                            complex analysis into clear recommendations—I presented findings to the CFO and secured
+                            buy-in for implementation across 12 hospital locations."</p>
                     </div>
                 </div>
-
-                <!-- SACMA -->
-                <div class="project-card">
-                    <h3 class="project-title">
-                        <i class="fas fa-users"></i>
-                        SACMA.org.za
-                    </h3>
-                    <p class="project-description">South African organization website with member portal and event management</p>
-                    <ul class="project-features">
-                        <li>Member registration and management</li>
-                        <li>Event booking and calendar system</li>
-                        <li>News and announcements</li>
-                        <li>Resource library and downloads</li>
-                        <li>Secure member authentication</li>
-                    </ul>
-                    <div class="project-links">
-                        <a href="https://sacma.org.za/" class="btn btn-primary">
-                            <i class="fas fa-external-link-alt"></i> Visit Site
-                        </a>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">What is your biggest weakness?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I have a tendency to dive too deep into analysis, which can delay
+                            decision-making. I've learned to manage this by setting clear time boundaries and using the
+                            80/20 rule. On a recent market entry project, I caught myself spending too much time on
+                            secondary research, so I shifted to interviewing stakeholders which provided better insights
+                            faster."</p>
                     </div>
                 </div>
-
-                <!-- Apex Axis -->
-                <div class="project-card">
-                    <h3 class="project-title">
-                        <i class="fas fa-chart-line"></i>
-                        ApexAxis.co.za
-                    </h3>
-                    <p class="project-description">Business consulting website with portfolio showcase and client portal</p>
-                    <ul class="project-features">
-                        <li>Service portfolio presentation</li>
-                        <li>Client testimonials and case studies</li>
-                        <li>Contact and consultation booking</li>
-                        <li>Blog and resource section</li>
-                        <li>Mobile-first responsive design</li>
-                    </ul>
-                    <div class="project-links">
-                        <a href="https://apexaxis.co.za/" class="btn btn-primary">
-                            <i class="fas fa-external-link-alt"></i> Visit Site
-                        </a>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Tell me about a time you failed.</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "In my second year, I led a market sizing analysis that
+                            significantly overestimated our client's addressable market. I had made assumptions without
+                            validating them with primary research. When the client tested our recommendations,
+                            conversion rates were 40% below projections. I took ownership, conducted customer
+                            interviews, and revised our model. This taught me to always validate critical assumptions
+                            with primary data."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Describe a situation where you disagreed with
+                        your manager.</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "On a cost reduction project, my manager wanted to recommend 20%
+                            headcount cuts. Based on my analysis, I believed this would damage service quality and
+                            customer retention. I presented data showing the correlation between staffing levels and
+                            customer satisfaction, and proposed an alternative focusing on process automation achieving
+                            15% savings without layoffs. My manager appreciated the data-driven approach."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">How do you handle ambiguity?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I thrive in ambiguous situations by creating structure. On a
+                            digital transformation project, we had a vague mandate to 'improve customer experience.' I
+                            broke down the problem through stakeholder interviews, identified measurable KPIs, and
+                            created a hypothesis tree. I proposed a 2-week diagnostic phase. This structured approach
+                            turned an ambiguous project into a clear roadmap that resulted in a 25% increase in customer
+                            satisfaction."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Tell me about a time you worked under pressure.
+                    </div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "During a due diligence project, our client moved the closing date
+                            forward by two weeks, compressing our timeline by 40%. I immediately reorganized our
+                            workplan, identified critical vs. nice-to-have analyses, and delegated based on team
+                            strengths. I negotiated with the client to conduct some interviews post-close. We delivered
+                            on time and the client praised our ability to adapt under pressure."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Describe your ideal work environment.</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I thrive in collaborative, fast-paced environments where I can work
+                            with smart, motivated people on challenging problems. I value workplaces that emphasize
+                            learning and mentorship—both giving and receiving feedback openly. I also appreciate
+                            autonomy to approach problems creatively while having a strong team to collaborate with."
+                        </p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">How would your colleagues describe you?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "My colleagues would describe me as reliable, analytical, and
+                            collaborative. In our last 360 review, team members noted that I consistently deliver
+                            high-quality work and am always willing to help others. My manager mentioned my ability to
+                            break down complex problems and build relationships with difficult stakeholders."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Tell me about a time you received critical
+                        feedback.</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "After my first client presentation, my manager told me I was too
+                            focused on showing analysis rather than telling a clear story. This was valuable feedback. I
+                            studied McKinsey's Pyramid Principle and practiced with mentors. On my next presentation, I
+                            led with the answer, supported it with three key insights, and saved detailed analysis for
+                            backup slides. That feedback fundamentally improved my communication skills."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">What motivates you?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I'm motivated by impact, learning, and team success. I get
+                            energized when my work drives real business results—like when a pricing strategy I developed
+                            generated $8M in additional revenue. I'm driven by continuous learning across industries.
+                            Finally, I'm motivated by team success and seeing junior team members grow under my
+                            mentorship."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Where do you see yourself in 5 years?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "In five years, I see myself as a manager or senior manager at a
+                            top-tier consulting firm, leading full project teams and driving strategic client
+                            relationships. I want to deepen my expertise in [specific area], potentially developing
+                            thought leadership. I'm also committed to mentorship—I want to be the kind of leader who
+                            develops strong consultants."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Why are you leaving your current position?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I've had an excellent three years at my current firm and have grown
+                            significantly. However, I'm seeking an opportunity that offers deeper exposure to [specific
+                            type of work]. Your firm's strength in [practice area] and reputation align perfectly with
+                            where I want to develop my expertise. I'm ready for the next challenge."</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- Tech Stack Section -->
-        <section class="section">
-            <h2><i class="fas fa-tools"></i> Tech Stack</h2>
-            <div class="tech-stack">
-                <span class="tech-badge"><i class="fab fa-js-square"></i> JavaScript</span>
-                <span class="tech-badge"><i class="fab fa-python"></i> Python</span>
-                <span class="tech-badge"><i class="fab fa-php"></i> PHP</span>
-                <span class="tech-badge"><i class="fab fa-java"></i> Java</span>
-                <span class="tech-badge"><i class="fab fa-html5"></i> HTML5</span>
-                <span class="tech-badge"><i class="fab fa-css3-alt"></i> CSS3</span>
-                <span class="tech-badge"><i class="fab fa-react"></i> React</span>
-                <span class="tech-badge"><i class="fab fa-vuejs"></i> Vue.js</span>
-                <span class="tech-badge"><i class="fab fa-node-js"></i> Node.js</span>
-                <span class="tech-badge"><i class="fab fa-laravel"></i> Laravel</span>
-                <span class="tech-badge"><i class="fas fa-database"></i> MongoDB</span>
-                <span class="tech-badge"><i class="fas fa-database"></i> MySQL</span>
-                <span class="tech-badge"><i class="fab fa-docker"></i> Docker</span>
-                <span class="tech-badge"><i class="fab fa-aws"></i> AWS</span>
-                <span class="tech-badge"><i class="fab fa-git-alt"></i> Git</span>
+        <!-- LEADERSHIP & TEAMWORK QUESTIONS -->
+        <div class="section">
+            <h2 class="section-title" onclick="toggleSection(this)">Leadership & Teamwork Questions</h2>
+            <div class="questions-container">
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Describe your leadership style.</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I lead with a coaching mindset—setting clear objectives, providing
+                            context and support, then empowering team members to own their work. On a recent project, I
+                            managed two analysts. Rather than dictating how to conduct analysis, I explained why it
+                            mattered, shared frameworks, and made myself available for questions. Both analysts
+                            delivered excellent work and appreciated the autonomy combined with support."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Tell me about a time you led a team through a
+                        difficult challenge.</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I led a four-person team on an operational efficiency project where
+                            we discovered the client's data was unreliable halfway through. The team was frustrated and
+                            behind schedule. I gathered everyone for a reset conversation, brainstormed solutions, and
+                            redistributed work to collect primary data. I negotiated a timeline extension by being
+                            transparent. The team rallied and we completed the project successfully."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">How do you handle team conflicts?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I address conflicts directly but diplomatically. On one project,
+                            two team members had different opinions about market segment priorities. Rather than
+                            deciding for them, I facilitated a discussion where each presented their reasoning. I
+                            suggested we score each segment on both criteria and let the data guide us. This approach
+                            acknowledged both perspectives and led to a solution everyone supported."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Describe a time you had to motivate a disengaged
+                        team member.</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I noticed one analyst was producing below-standard work and seemed
+                            disconnected. I scheduled a one-on-one and learned he felt his work was repetitive and
+                            didn't understand the bigger picture. I started having weekly context-setting sessions and
+                            gave him ownership of a more strategic workstream. His engagement and output improved
+                            significantly."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Tell me about a time you had to give difficult
+                        feedback to a colleague.</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I was working with a peer whose client communications were creating
+                            confusion. I scheduled a coffee chat and used specific examples, then shared what I'd
+                            learned about structured communication and offered to review his next few emails. He
+                            appreciated the feedback and his communications improved noticeably. The key was being
+                            specific, solution-focused, and supportive."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">How do you build trust with new team members?
+                    </div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I build trust through consistency, transparency, and support. I
+                            start with clear expectations and deliver on commitments. I'm transparent about challenges
+                            and mistakes. I also understand team members' career goals and provide opportunities that
+                            align with their development. These actions build credibility and psychological safety."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Describe your experience mentoring junior
+                        consultants.</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "Over the past two years, I've directly mentored five analysts and
+                            consultants. My approach involves early goal-setting conversations, then providing
+                            increasingly stretching opportunities. For example, one analyst wanted to improve executive
+                            presence. I had him observe my client meetings, then co-present, then lead smaller
+                            conversations. He's now confidently leading client workshops."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Tell me about a time you successfully
+                        collaborated with a difficult team member.</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I worked with a subject matter expert who was brilliant but
+                            dismissive of consulting team ideas. I scheduled a meeting to understand his perspective.
+                            He'd had bad experiences with consultants not understanding technical details. I
+                            acknowledged this, asked him to educate me, and did my homework before discussions. As he
+                            saw I was making genuine effort, he became more collaborative."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">How do you ensure diverse perspectives are heard
+                        in team settings?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I'm intentional about creating inclusive team dynamics. In
+                            meetings, I use round-robin input where everyone shares before we discuss. I check in
+                            one-on-one with quieter team members. On a recent project, I started sending topics in
+                            advance and asking everyone to come with written ideas. Diversity of thought leads to better
+                            solutions but requires deliberate facilitation."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Tell me about a time you had to work with a team
+                        member from a very different background.</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I worked on a global project with a team spanning four countries.
+                            My colleague in India approached problem-solving differently—she preferred detailed
+                            structured processes while I tend toward rapid iteration. We scheduled a call to discuss
+                            working styles and found a middle ground that combined both approaches. This combination
+                            actually produced better results than either approach alone."</p>
+                    </div>
+                </div>
             </div>
-        </section>
+        </div>
 
-        <!-- GitHub Stats Section -->
-        <section class="section">
-            <h2><i class="fab fa-github"></i> GitHub Stats</h2>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">150+</div>
-                    <div>Commits This Year</div>
+        <!-- PROBLEM-SOLVING & ANALYTICAL QUESTIONS -->
+        <div class="section">
+            <h2 class="section-title" onclick="toggleSection(this)">Problem-Solving & Analytical Questions</h2>
+            <div class="questions-container">
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">How do you approach a problem you've never
+                        encountered before?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I use a structured approach: understand the problem by breaking it
+                            into components, look for analogous situations, hypothesis what might be driving it using
+                            frameworks like issue trees, identify what data would prove/disprove hypotheses, and
+                            prioritize based on impact and effort. This approach helped me structure a supply chain
+                            solution that reduced costs by 18% despite lacking domain expertise."</p>
+                    </div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-number">25+</div>
-                    <div>Public Repositories</div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Walk me through how you would estimate the market
+                        size for electric vehicles in Germany.</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "Top-down approach: Germany has 83M people, roughly 42M households
+                            averaging 1.4 cars = 58M total vehicles. Annual purchases are ~1/15th of the fleet = 3.9M
+                            new cars annually. EVs represent about 15% of new sales = 585K EVs annually. Given
+                            government incentives and environmental trends, I'd project this growing to 25-30% of new
+                            sales, suggesting 900K-1.2M EVs annually. I'd validate with bottom-up data on production
+                            capacity."</p>
+                    </div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-number">50+</div>
-                    <div>Stars Received</div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">A retail client's sales have declined 20%
+                        year-over-year. How would you approach this?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I'd structure around a hypothesis tree: Is the decline due to fewer
+                            customers (traffic) or customers spending less (conversion/basket size)? For traffic: Has
+                            market size shrunk? Have competitors taken share? Has marketing effectiveness declined? For
+                            conversion: Have prices increased relative to competitors? Has quality declined? I'd
+                            prioritize based on magnitude and look at whether decline is across all stores or
+                            concentrated."</p>
+                    </div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-number">10+</div>
-                    <div>Languages Used</div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">How do you prioritize when you have multiple
+                        urgent tasks?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I use an impact-urgency matrix combined with stakeholder
+                            communication. I list all tasks with deadlines and dependencies, assess true impact,
+                            identify what can be delegated/delayed/dropped, and proactively communicate with
+                            stakeholders. For example, with three deliverables due the same day, I delivered the client
+                            presentation and team status report, but negotiated an extension on the internal memo by
+                            explaining trade-offs."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Tell me about a time you had to make a decision
+                        with incomplete data.</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "During due diligence, we needed to assess market attractiveness but
+                            the target had limited data and reports were three years old. Rather than waiting for
+                            perfect data, I conducted 15 expert interviews with industry participants, customers, and
+                            competitors to triangulate insights. I clearly documented assumptions and confidence levels.
+                            In consulting, you rarely have perfect information—the skill is knowing when you have
+                            enough."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">How do you validate your assumptions in analysis?
+                    </div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I use multiple validation techniques: sense-check against known
+                            benchmarks, triangulate with multiple data sources, seek disconfirming evidence, and
+                            pressure-test with subject matter experts. On a pricing project, I calculated price
+                            elasticity from historical data but validated it by interviewing sales teams and testing
+                            small price changes. This multi-pronged approach catches errors and builds robust
+                            recommendations."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Describe a complex analysis you've conducted and
+                        how you presented it.</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I led a customer segmentation analysis for a healthcare provider
+                            involving 500K patients and 50+ variables. After clustering analysis, I identified five
+                            distinct segments. The complexity was making this actionable. I presented it using a visual
+                            typology showing each segment's size, profitability, and characteristics, then showed
+                            tailored engagement strategies. Instead of showing methodology, I focused on the 'so what'.
+                            The client saw a 15% improvement in patient engagement."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">How do you approach root cause analysis?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I use the '5 Whys' technique combined with data analysis. When a
+                            manufacturing client experienced quality defects, we didn't stop at 'production errors.' We
+                            asked why errors occurred, why training was insufficient, why turnover was high, why
+                            compensation was below market. This led us to the root cause: the client's compensation
+                            structure. Data analysis confirmed this—plants with below-market wages had 3x higher defect
+                            rates."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Tell me about a time your analysis changed a
+                        client's strategic direction.</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "A consumer goods client wanted to enter the premium segment with a
+                            new product line. My market analysis revealed their brand had strong recognition in value
+                            segments but weak association with premium quality. Consumer surveys showed 68% would be
+                            skeptical of a premium offering from this brand. I recommended a separate premium brand or
+                            acquisition. The client ultimately acquired a small premium brand, which has outperformed
+                            original projections by 40%."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">How do you balance data-driven analysis with
+                        business intuition?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "Both are essential. Data provides objectivity and credibility, but
+                            business intuition recognizes patterns. I start with data to understand 'what's happening,'
+                            then apply intuition to interpret 'why.' For example, data showed a retail client's online
+                            sales growing 50% while stores declined 10%. Pure data analysis suggested closing stores.
+                            However, intuition revealed stores drove brand awareness that fueled online sales. We
+                            recommended an omnichannel approach instead."</p>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- Current Goals Section -->
-        <section class="section">
-            <h2><i class="fas fa-target"></i> Current Goals</h2>
-            <ul class="goals-list">
-                <li>
-                    <i class="fas fa-seedling" style="background: linear-gradient(45deg, #667eea, #22c55e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
-                    <strong>Learning:</strong> Advanced React patterns and TypeScript
-                </li>
-                <li>
-                    <i class="fas fa-telescope" style="background: linear-gradient(45deg, #F75C7E, #ff6b9d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
-                    <strong>Working on:</strong> A real-time collaborative coding platform
-                </li>
-                <li>
-                    <i class="fas fa-handshake" style="background: linear-gradient(45deg, #ffd93d, #ffb347); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
-                    <strong>Looking to collaborate on:</strong> Open source projects
-                </li>
-                <li>
-                    <i class="fas fa-comments" style="background: linear-gradient(45deg, #667eea, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
-                    <strong>Ask me about:</strong> JavaScript, PHP, Python, or web development
-                </li>
-                <li>
-                    <i class="fas fa-bolt" style="background: linear-gradient(45deg, #F75C7E, #ffd93d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
-                    <strong>Fun fact:</strong> I once fixed a bug by staring at it long enough
-                </li>
-            </ul>
-        </section>
-
-        <!-- Contact Section -->
-        <section class="section">
-            <h2><i class="fas fa-envelope"></i> Let's Connect!</h2>
-            <p class="about-text" style="text-align: center; margin-bottom: 20px;">
-                I'm always open to interesting conversations and collaboration opportunities. Whether you want to discuss technology, share a project idea, or just say hi, feel free to reach out!
-            </p>
-            <div class="contact-grid">
-                <a href="mailto:tadiekureya@gmail.com" class="contact-item">
-                    <i class="fas fa-envelope" style="font-size: 1.5rem; margin-bottom: 10px; display: block;"></i>
-                    Email Me
-                </a>
-                <a href="https://www.linkedin.com/in/bkureya/" class="contact-item">
-                    <i class="fab fa-linkedin" style="font-size: 1.5rem; margin-bottom: 10px; display: block;"></i>
-                    LinkedIn
-                </a>
-                <a href="https://twitter.com/tadiekvx" class="contact-item">
-                    <i class="fab fa-twitter" style="font-size: 1.5rem; margin-bottom: 10px; display: block;"></i>
-                    Twitter
-                </a>
-                <a href="https://github.com/tadiekvx" class="contact-item">
-                    <i class="fab fa-github" style="font-size: 1.5rem; margin-bottom: 10px; display: block;"></i>
-                    GitHub
-                </a>
+        <!-- CLIENT MANAGEMENT QUESTIONS -->
+        <div class="section">
+            <h2 class="section-title" onclick="toggleSection(this)">Client Management Questions</h2>
+            <div class="questions-container">
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">How do you build trust with clients quickly?
+                    </div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I build trust through three actions: demonstrate competence
+                            quickly, show genuine interest in their business, and deliver on commitments consistently.
+                            In the first week, I learn the client's business deeply, ask smart questions, and show I've
+                            done my homework. I look for quick wins to deliver early value. I keep commitments—if I say
+                            Tuesday, it arrives Tuesday. This credibility-building leads to strong partnerships."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Tell me about a time you managed a difficult
+                        client relationship.</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I worked with a client executive who was openly hostile to our
+                            project, seeing it as corporate interference. I scheduled a one-on-one to understand his
+                            concerns. He felt the project threatened his team's autonomy. I acknowledged this, asked for
+                            his input on project design, and ensured his team was involved in solution development. By
+                            the end, he became a champion because he felt heard and saw his insights reflected in
+                            recommendations."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">How do you deliver bad news to a client?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I deliver bad news directly but constructively, focusing on
+                            solutions. On a cost reduction project, our analysis showed the client couldn't achieve
+                            their 30% target without significant headcount reductions. Rather than just disappointing
+                            news, I presented: 'Here's what we found, constraints, and three alternative paths forward
+                            with different trade-offs.' I showed that 20% savings were achievable through process
+                            improvements. The key is never surprising clients."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Describe a time when you had to manage
+                        conflicting stakeholder priorities.</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "On a digital transformation project, the IT Director prioritized
+                            security and stability while the CMO wanted rapid feature deployment. I facilitated a joint
+                            session where each articulated their concerns. I then presented a phased approach: initial
+                            MVP with enhanced security protocols followed by rapid two-week sprint cycles for new
+                            features. This solution acknowledged both priorities and produced better outcomes than
+                            either extreme would have."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">How do you handle scope creep from clients?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I address scope creep directly and early. When a client requested
+                            additional analyses outside our agreed scope, I said, 'This is valuable work, but it's
+                            beyond our current scope. We have three options: descope something else, extend the
+                            timeline, or treat this as a follow-on phase.' By presenting clear trade-offs, clients
+                            usually make rational decisions. The key is having a well-defined scope document upfront."
+                        </p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Tell me about a time you exceeded client
+                        expectations.</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "During a market entry project, I noticed our client was struggling
+                            with internal alignment around the recommendation. While our scope ended with the final
+                            presentation, I volunteered to facilitate three additional workshops with their regional
+                            teams to build buy-in. I also created a simplified one-pager for the CEO's board
+                            presentation. The client specifically cited this support and invited us back for
+                            implementation."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">How do you communicate complex technical findings
+                        to non-technical clients?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I use the 'so what' principle—always lead with business
+                            implications, not methodology. After conducting a complex machine learning analysis on
+                            customer churn, I didn't present algorithm details. Instead, I showed: 'We identified three
+                            behaviors that predict churn with 85% accuracy. This means you can intervene 60 days
+                            earlier, potentially saving $12M in annual revenue.' I use visuals over tables, stories over
+                            statistics."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Describe a situation where you had to say 'no' to
+                        a client request.</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "A client asked us to recommend cost cuts without analyzing customer
+                            impact—they just wanted fast savings. I respectfully pushed back, explaining that
+                            recommendations without impact analysis could damage customer satisfaction and long-term
+                            revenue. I proposed a compressed timeline for customer impact assessment that would delay
+                            recommendations by just one week. I showed examples where cuts without customer
+                            consideration had backfired. The client agreed to the modified approach."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">How do you ensure client engagement throughout a
+                        long project?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I use structured touchpoints and involvement. At project kickoff, I
+                            establish weekly steering committee meetings, biweekly working team sessions, and informal
+                            check-ins. I involve client team members in data collection and analysis. I deliver interim
+                            insights rather than saving everything for the final presentation. On a 6-month operations
+                            project, I created an 'insights of the week' email showing incremental findings. This kept
+                            stakeholders engaged."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Tell me about a time you turned around a client
+                        relationship that was going poorly.</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "Three months into an engagement, I sensed the client was
+                            dissatisfied. I proactively requested feedback and learned they felt we weren't addressing
+                            pressing concerns—they wanted tactical quick wins while we focused on long-term strategy. I
+                            immediately adjusted: dedicated one workstream to identifying and implementing quick wins
+                            within 30 days. We delivered five operational improvements that saved $2M in the first
+                            quarter. The client's attitude completely shifted."</p>
+                    </div>
+                </div>
             </div>
-        </section>
+        </div>
 
-        <!-- Footer -->
-        <footer class="footer">
-            <p>⭐️ From <a href="https://github.com/tadiekvx" style="color: #F75C7E;">tadiekvx</a></p>
-            <p>© 2025 Brandon K. All rights reserved.</p>
-        </footer>
+        <!-- PROJECT MANAGEMENT QUESTIONS -->
+        <div class="section">
+            <h2 class="section-title" onclick="toggleSection(this)">Project Management Questions</h2>
+            <div class="questions-container">
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">How do you structure your approach to a new
+                        project?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I follow five steps: 1) Clarify objectives and success criteria
+                            with stakeholders, 2) Develop a hypothesis-driven workplan identifying key questions and
+                            analyses needed, 3) Create a detailed timeline with milestones and dependencies, 4)
+                            Establish team roles and communication protocols, 5) Set up tracking mechanisms for progress
+                            and risks. This structure keeps the team aligned and makes it easy to track progress."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Tell me about a time you had to recover a project
+                        that was behind schedule.</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "Two weeks before a major client presentation, I took over a
+                            workstream that was significantly behind. I immediately conducted a triage: assessed
+                            critical vs. nice-to-have work, identified bottlenecks, and reallocated resources. I brought
+                            in an additional analyst and personally took on execution work. I proactively communicated
+                            with the client about the situation and recovery plan. We worked late nights but delivered
+                            on time with all critical content."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">How do you manage project risks?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I identify, monitor, and mitigate risks systematically. At project
+                            kickoff, I conduct a risk assessment across categories: data availability, client
+                            engagement, resource constraints, technical challenges. I rate each by likelihood and
+                            impact, then develop mitigation strategies for high-priority risks. I track these in a risk
+                            register reviewed weekly. On an M&A project, I flagged 'limited access to target management'
+                            early and mitigated by identifying alternative data sources."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Describe your experience with agile project
+                        methodologies.</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I've adapted agile principles to consulting contexts. On a digital
+                            product development project, we used two-week sprints with daily standups, retrospectives,
+                            and iterative client reviews. Instead of a big final deliverable, we showed incremental
+                            progress every two weeks. This caught issues early—after sprint 3, client feedback led us to
+                            pivot our UX approach, which would have been costly to change at the end."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">How do you ensure quality control in your
+                        deliverables?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I use a multi-layer QC process: 1) Self-review against a checklist
+                            covering analysis accuracy, logical flow, and presentation quality, 2) Peer review by
+                            someone not involved in creating the content, 3) Senior review focused on strategic
+                            soundness, 4) Final client-ready review. For critical deliverables, I do a 'red team' review
+                            where someone challenges every assumption. This layered approach catches different types of
+                            issues."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Tell me about a time you had to manage multiple
+                        projects simultaneously.</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "Last quarter, I managed three concurrent engagements at different
+                            phases: a market entry study in execution, due diligence in planning, and pricing
+                            optimization in final delivery. I managed this through rigorous time-blocking and
+                            delegation. I blocked specific days for each project to maintain focus. I delegated
+                            day-to-day execution while staying involved in critical decisions. All three projects
+                            delivered successfully."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">How do you handle changes to project scope or
+                        objectives mid-engagement?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I handle scope changes through structured change management. When a
+                            client requested a significant shift three weeks into a four-week project, I documented the
+                            requested changes, assessed impact on timeline/resources/deliverables, and presented
+                            options. We had three choices: extend timeline, add resources, or adjust deliverables. After
+                            discussion, we agreed to extend by one week and descope a lower-priority analysis."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Describe how you track and report project
+                        progress.</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I use multiple tracking mechanisms tailored to audience: For the
+                            team, a detailed workplan with task-level status, owners, and deadlines. For clients,
+                            executive summaries in steering meetings focusing on progress toward milestones, decisions
+                            needed, and flagged risks. For internal leadership, a traffic-light dashboard across
+                            timeline, budget, client satisfaction, and team health. Good tracking prevents surprises."
+                        </p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">How do you ensure effective knowledge transfer at
+                        project end?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I build knowledge transfer into the project lifecycle. Throughout
+                            the project, I involve client team members in analyses and co-develop solutions. Toward
+                            project end, I create comprehensive documentation including methodology, data sources, and
+                            assumptions. I conduct workshops to transfer technical skills. I also propose a 30-60 day
+                            'check-in' period where we remain available for questions as they implement."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Tell me about a time you had to manage up to
+                        senior leadership.</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "On a transformation project, I noticed our project leader was
+                            making a recommendation I believed was flawed—our analysis showed the client's proposed org
+                            structure would create coordination issues. I requested a meeting and presented data showing
+                            similar structures had failed in peer companies. I proposed an alternative that achieved the
+                            client's goals while mitigating risks. The leader appreciated the data-driven challenge and
+                            we adjusted our recommendation."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TECHNICAL & INDUSTRY QUESTIONS -->
+        <div class="section">
+            <h2 class="section-title" onclick="toggleSection(this)">Technical & Industry Questions</h2>
+            <div class="questions-container">
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">What frameworks do you typically use in your
+                        consulting work?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I tailor frameworks to the problem. For strategic questions, I use
+                            Porter's Five Forces, SWOT, and value chain analysis. For operational issues, process
+                            mapping and root cause analysis. For market analysis, segmentation frameworks. However,
+                            custom frameworks often work best. On a healthcare project, I developed a patient journey
+                            framework specific to chronic disease management rather than using a generic customer
+                            journey."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">How do you stay current with industry trends and
+                        business developments?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I have a structured approach: I read key publications like HBR,
+                            WSJ, and industry-specific journals weekly. I subscribe to newsletters from McKinsey and
+                            BCG. I attend 2-3 industry conferences annually. I also learn from every project—I do a
+                            deep-dive on each client's industry. Recently, I've focused on AI's impact on business
+                            strategy, so I took an online course in machine learning applications."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Tell me about your experience with data
+                        visualization and presentation tools.</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I'm proficient in the full Microsoft Office suite with advanced
+                            Excel and PowerPoint skills. I can build complex financial models, use pivot tables and
+                            macros. I create client-ready presentations following the 'pyramid principle.' I have
+                            experience with Tableau and Power BI for interactive dashboards. However, I believe tools
+                            are means to an end—the skill is choosing the right visualization for the message."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">What's your experience with financial modeling
+                        and analysis?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I build financial models regularly—DCF valuations, LBO models,
+                            operational P&Ls, working capital analyses. On a recent PE due diligence, I built a 10-year
+                            revenue and EBITDA projection model with sensitivity analysis on key assumptions. I
+                            incorporated multiple scenarios and probability-weighted outcomes. The model helped the
+                            client understand downside protection—at the 20th percentile, the investment still generated
+                            12% IRR."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">How do you approach competitor analysis?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I use a four-part approach: 1) Identify the competitive set—direct
+                            and indirect competitors, 2) Gather intelligence from multiple sources—public filings,
+                            industry reports, expert interviews, customer surveys, mystery shopping, 3) Analyze across
+                            key dimensions—strategy, capabilities, financials, market positioning, 4) Synthesize into
+                            actionable insights about competitive dynamics and strategic implications."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Describe your experience with change management.
+                    </div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I've been involved in change management on transformation projects.
+                            I use frameworks like ADKAR and Kotter's 8-steps, but also practical tactics: stakeholder
+                            mapping, communication plans tailored to different audiences, training programs, quick wins
+                            to build momentum, and feedback mechanisms. On a post-merger integration, I developed a
+                            change management plan that included town halls, manager toolkits, and 'change champions' in
+                            each department."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">What industries do you have the most experience
+                        in?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "My deepest experience is in healthcare and financial services,
+                            where I've worked on 8-10 projects over three years. In healthcare, I've done work spanning
+                            hospital operations, medical device strategy, and payer analytics. In financial services,
+                            I've worked on retail banking strategy, wealth management, and fintech. While I have
+                            industry depth, I've found consulting skills transfer across sectors."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">How do you conduct effective customer research?
+                    </div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I combine quantitative and qualitative approaches. For
+                            quantitative, I use surveys with carefully designed questions, sufficient sample sizes, and
+                            segmentation analysis. For qualitative, I conduct in-depth interviews, focus groups, and
+                            ethnographic observation. The key is asking the right questions. On a retail project,
+                            instead of asking 'Would you buy this product?' we asked about current behaviors and pain
+                            points, using the 'jobs-to-be-done' framework."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Tell me about your experience with digital
+                        transformation projects.</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I've worked on three digital transformation engagements focusing on
+                            different aspects. Common themes: technology is the easy part—the hard part is changing
+                            operating models, skills, and culture. I've learned to start with customer journeys and
+                            business outcomes rather than technology features. On a manufacturing project, we didn't
+                            lead with IoT—we identified quality and maintenance pain points first, then showed how IoT
+                            addressed those specific problems."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">What's your experience with M&A due diligence?
+                    </div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I've participated in five buy-side due diligence projects and one
+                            sell-side. My role typically involves commercial due diligence—market attractiveness,
+                            competitive position, revenue synergies, customer analysis. On a recent deal, I led market
+                            sizing and growth analysis for a SaaS target. I validated management's revenue projections
+                            through bottom-up customer analysis, competitor benchmarking, and expert interviews."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PERSONAL DEVELOPMENT & CAREER QUESTIONS -->
+        <div class="section">
+            <h2 class="section-title" onclick="toggleSection(this)">Personal Development & Career Questions</h2>
+            <div class="questions-container">
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">What are you currently doing to develop your
+                        skills?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I'm investing in three development areas: First, enhancing my
+                            quantitative skills by taking an online course in Python for data analysis. Second,
+                            developing my executive presence by working with a coach on presentation and communication
+                            skills. Third, deepening my industry expertise by reading academic research on healthcare
+                            economics and attending industry conferences. I also seek stretch assignments at work."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">How do you handle constructive criticism?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I actively seek feedback and view it as essential for growth. After
+                            every major deliverable, I ask 'What did I do well and what could I improve?' When I receive
+                            criticism, I listen without being defensive, ask clarifying questions, and thank the person.
+                            I then reflect on whether it's valid and how to improve. The best professionals seek
+                            feedback actively rather than waiting for it."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Tell me about a skill you've developed recently.
+                    </div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "Over the past year, I've significantly improved my stakeholder
+                            management skills, particularly with resistant stakeholders. I read books like 'Getting to
+                            Yes' and 'Crucial Conversations,' attended workshops, and practiced techniques. On a recent
+                            project with a skeptical COO, I used these techniques to understand his concerns and
+                            designed our recommendations to phase implementation. He became a supporter."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">What professional accomplishment are you most
+                        proud of?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I'm most proud of turning around a failing project in my second
+                            year. I inherited a cost reduction engagement that was three weeks behind schedule with an
+                            unhappy client and demoralized team. I rebuilt the project plan, reallocated resources,
+                            personally worked alongside the team, and re-engaged the client. We delivered on time with
+                            recommendations that saved $12M annually. What made me proudest was the team feedback—they
+                            said my leadership helped them grow."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">How do you maintain work-life balance in
+                        demanding consulting roles?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I maintain balance through boundaries and efficiency. I protect
+                            certain times—I don't schedule calls before 8am or after 7pm except for true emergencies.
+                            I'm rigorous about efficient work—I'd rather work intensely for 10 focused hours than
+                            distracted for 14. During intense project phases, I'm transparent that balance will be
+                            temporary, but I ensure recovery time afterward. Sustainable high performance requires both
+                            intensity and recovery."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">What makes you different from other candidates?
+                    </div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "Three differentiators: First, my combination of analytical rigor
+                            and interpersonal skills—I'm not just a technical expert or just a people person, but both.
+                            Second, my healthcare industry expertise combined with general consulting skills. Third, my
+                            track record of developing others. I've mentored 8 junior consultants in three years, five
+                            of whom were promoted ahead of schedule. I see senior associates as player-coaches, and I'm
+                            prepared for that dual role."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">What are your salary expectations?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "Based on my research of market rates for senior associate positions
+                            with 4 years of consulting experience in [location], and considering my track record, I'm
+                            targeting a base salary in the range of [range based on research]. However, I'm more focused
+                            on the overall opportunity—the projects, learning, and career trajectory—than just
+                            compensation. I'm open to discussing a total package. Can you share the typical range for
+                            this role?"</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Why should we hire you over other qualified
+                        candidates?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "You should hire me because I offer a unique combination: proven
+                            client impact—I've driven measurable results on 12+ engagements; leadership ability—I've
+                            successfully managed teams and developed junior consultants; and cultural fit—your firm's
+                            values around collaboration and excellence resonate with how I work. I can hit the ground
+                            running in your healthcare practice given my domain expertise, while also contributing to
+                            other practices."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">What questions do you have for us?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I have several: 1) What does success look like for someone in this
+                            role in the first 6-12 months? 2) How does your firm approach professional development and
+                            mentorship for senior associates? 3) Can you tell me about a recent project that exemplifies
+                            the type of work I'd be involved in? 4) How has your firm adapted its offerings in response
+                            to market changes over the past year? 5) What do you enjoy most about working here?"</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">How do you handle stress and pressure?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I manage stress through preparation, perspective, and self-care. I
+                            prepare thoroughly so I feel confident in high-pressure situations. I maintain perspective
+                            that most consulting 'emergencies' aren't life-or-death. I also invest in self-care: I
+                            exercise 4-5 times weekly, get adequate sleep, and maintain outside interests. I've learned
+                            to recognize my stress signals and address them proactively. Stress management needs to be
+                            proactive, not reactive."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CASE INTERVIEW QUESTIONS -->
+        <div class="section">
+            <h2 class="section-title" onclick="toggleSection(this)">Case Interview Questions</h2>
+            <div class="questions-container">
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Market Sizing: How many pizzas are consumed in
+                        the United States annually?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "Top-down: US population is 330M. Average household size is 2.5 =
+                            132M households. Estimate 80% consume pizza = 106M pizza-consuming households. Average
+                            frequency: 2 times per month = 24 times per year. So 106M × 24 = 2.5B pizza occasions
+                            annually. Average pizza serves 3 people, so 2.5B ÷ 3 = approximately 830M pizzas. I'd
+                            validate bottom-up: major chains might sell 500-600M combined, add independents and frozen
+                            gets to similar range. So roughly 800M-1B pizzas annually."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Profitability: A hospital's profitability has
+                        declined 15% year-over-year. What could be causing this?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I'd structure around profit = revenue - costs. Revenue decline:
+                            volume (fewer patients), mix (shift to lower-reimbursement procedures), or price (payer mix
+                            shifting to Medicare/Medicaid). Cost increases: labor (wage inflation), supplies
+                            (pharmaceutical costs rising), or fixed costs (new facility/equipment). I'd prioritize: 1)
+                            Is revenue down or costs up? 2) Segment by service line. 3) Compare to peer benchmarks.
+                            High-priority hypotheses: payer mix shift or labor cost inflation."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Market Entry: Your client is considering entering
+                        the electric vehicle market. How would you advise them?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I'd assess across four dimensions: Market Attractiveness—Is the EV
+                            market growing? What's size and growth rate? Competitive Position—Can our client compete?
+                            What advantages do they have in batteries, software, manufacturing? Financial Viability—Can
+                            they generate acceptable returns? Build a business case with investment required, revenue
+                            projections, margin assumptions. Strategic Fit—Does this align with their strategy? How does
+                            it fit their brand and capabilities?"</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Pricing: A SaaS company wants to optimize their
+                        pricing. Where would you start?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I'd analyze pricing across three lenses: Value-Based—What value do
+                            customers derive? Conduct customer interviews to understand willingness to pay.
+                            Competition-Based—What are competitors charging? Benchmark pricing models and price points.
+                            Cost-Based—What are unit economics? While this shouldn't drive pricing, it sets a floor. I'd
+                            also segment customers—enterprise vs. SMB might have very different willingness to pay. My
+                            hypothesis tree: Is current pricing too high (losing deals), too low (leaving money on
+                            table), or wrong structure?"</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Operations: A manufacturing plant has seen
+                        quality defects increase 30% over six months. How would you diagnose this?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I'd use structured diagnostic: Is the increase recent or gradual?
+                            Is it across all products or specific ones? Is it across all shifts or concentrated? What
+                            changed in the past 6 months? Then analyze root causes across: People (training, turnover),
+                            Process (has process changed), Materials (supplier quality), Equipment (maintenance,
+                            calibration). I'd gather data: defect patterns, production logs, maintenance records. My
+                            hypothesis: new supplier with quality issues, deferred maintenance, or staff turnover
+                            leading to training gaps."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Strategy: A retail bank is losing market share to
+                        digital challengers. What should they do?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I'd frame this as: What's causing share loss and how should the
+                            bank respond? Likely causes: Digital challengers offer better UX, lower fees, innovative
+                            products, or better rates. Strategic options: 1) Defend—Improve digital offerings, reduce
+                            fees, 2) Differentiate—Leverage advantages challengers lack like branch network and trust,
+                            3) Transform—Fundamentally reimagine the model. I'd likely recommend a differentiated
+                            strategy leveraging existing strengths while closing critical digital gaps."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">M&A: Should our private equity client acquire
+                        this software company at the proposed valuation?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I'd assess: Commercial—Is the market attractive? Is this company
+                            positioned well? Validate management projections. Financial—Does valuation make sense? Build
+                            a model with base, upside, downside cases. What value creation levers exist? Operational—Are
+                            there integration risks? Technology debt? Key person dependencies? Strategic—Does this fit
+                            our portfolio? Red flags: customer concentration, churn trends. Green flags: high NPS, low
+                            churn, strong recurring revenue. My recommendation would balance attractiveness, valuation,
+                            and executable value creation."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Product: A consumer goods company wants to launch
+                        a new product category. How would you evaluate this opportunity?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I'd assess: Market—Is there a market? What's size, growth,
+                            profitability? Are current solutions inadequate? Competition—How crowded is the space? What
+                            would it take to win? Capability—Can we compete? Do we have relevant assets? Economics—Can
+                            we make money? Project revenues, costs, margins, payback period. Strategic Fit—Does this
+                            align with our portfolio? For prioritization, I'd first validate customer need, then size
+                            the market, then assess competitive dynamics."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Cost Reduction: A client needs to cut $50M in
+                        costs. How would you approach this?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I'd approach systematically: Baseline—Understand full cost
+                            structure. Where does $50M represent? Identify Opportunities—Benchmark against peers to find
+                            high-cost areas. Look across: labor (spans of control, automation), procurement (supplier
+                            consolidation), processes (eliminate waste), assets (footprint optimization). Assess
+                            Impact—Which cuts harm the business least? Develop Plan—Create portfolio of initiatives
+                            totaling $50M+, prioritized by impact/effort. My approach wouldn't be 'cut everything
+                            10%'—I'd target structural opportunities."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Growth: A B2B software company's growth has
+                        slowed from 40% to 15% annually. How would you help them accelerate growth?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I'd diagnose why growth slowed: Market saturation? Increased
+                            competition? Product limitations? Sales execution issues? Growth Levers: New customer
+                            acquisition—Expand to new segments/geographies. Existing customer expansion—Increase
+                            pricing, cross-sell. Retention—Reduce churn. New products—Address adjacent needs. My
+                            priority: understanding where growth was coming from and what changed. Most likely
+                            recommendation: Portfolio approach using multiple levers since 40% growth probably won't
+                            come from one source."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ADVANCED CONSULTING SCENARIOS -->
+        <div class="section">
+            <h2 class="section-title" onclick="toggleSection(this)">Advanced Consulting Scenarios</h2>
+            <div class="questions-container">
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">How would you handle a situation where your
+                        analysis contradicts the client's strongly held beliefs?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I'd present data diplomatically but directly: 1) Acknowledge their
+                            perspective, 2) Present our analysis methodically with data sources and methodology, 3)
+                            Invite them to pressure-test our assumptions, 4) If still resistant, suggest a small pilot
+                            to validate findings with minimal risk. The key is separating opinions from facts, being
+                            respectful but firm on data, and finding ways to validate assumptions with minimal risk."
+                        </p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Describe a time you had to make a recommendation
+                        you personally disagreed with.</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "On a cost reduction project, our analysis showed the optimal
+                            solution was outsourcing IT operations, eliminating 50 jobs. Personally, I felt this was
+                            short-sighted—it would damage institutional knowledge. However, the client's financial
+                            situation was dire. I brought up concerns with my project lead. We incorporated those
+                            factors but the recommendation remained the same. I delivered it professionally, including
+                            transition risks. My personal view doesn't override what's best for the client given their
+                            constraints."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">How would you structure a 100-day plan for a new
+                        CEO of a struggling retail company?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "Three phases: Days 1-30 (Assess)—Listen and learn. CEO meets with
+                            customers, suppliers, executive team, board, store visits. Commission rapid diagnostic on
+                            financial health, market position, operations, culture. Days 31-60 (Decide)—Develop
+                            strategic direction. Synthesize assessment, make key decisions on portfolio, positioning,
+                            priorities, people. Communicate vision. Days 61-100 (Act)—Execute initial priorities. Launch
+                            3-5 flagship initiatives, establish new operating rhythms, make organizational changes. This
+                            balances speed with thoughtfulness."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">A client asks for advice outside your expertise.
+                        What do you do?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I'm direct about my knowledge boundaries while offering to get them
+                            the right answer. I'd say: 'That's outside my direct expertise, but let me connect you with
+                            someone who can help,' then tap my firm's network to find a subject matter expert. If
+                            time-sensitive, I'd caveat my input clearly then follow up with expert validation. Clients
+                            respect honesty about limitations more than bluffing. Part of consulting value is knowing
+                            when to bring in specialized expertise."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">How do you approach a problem where there's no
+                        clear right answer?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "Many consulting problems involve trade-offs. My approach: 1) Make
+                            trade-offs explicit—What are we optimizing for? 2) Develop multiple options representing
+                            different trade-off choices, 3) Analyze each option's pros/cons, risks, requirements, 4)
+                            Facilitate decision-making with clear criteria and stakeholder input. My job isn't to pick
+                            for them but to structure the decision clearly."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">What would you do if halfway through a project
+                        you realized your initial hypothesis was completely wrong?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I'd address it immediately and transparently. First, validate that
+                            our hypothesis is indeed wrong. If confirmed, I'd inform my project lead and the client
+                            quickly: 'Our initial hypothesis about X doesn't hold based on data. Here's what we've
+                            learned instead, and here's how I recommend we adjust.' I'd present a revised workplan. The
+                            key is intellectual honesty—being hypothesis-driven means being willing to disprove your
+                            hypothesis. Good consultants follow the data wherever it leads."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">How do you balance being data-driven with making
+                        timely decisions when data is limited?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I calibrate analysis depth to decision importance and time
+                            constraints. For critical, irreversible decisions, I invest in comprehensive data. For
+                            smaller or reversible decisions, I use limited data plus judgment. Framework: What's the
+                            cost of being wrong? What's the cost of delay? Can we test and iterate? The key is being
+                            explicit about confidence levels: 'Based on limited data, our best judgment is X, but
+                            confidence is medium.' This helps stakeholders understand decision quality."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Tell me about a time you identified an
+                        opportunity the client hadn't considered.</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "During a cost reduction engagement for a retailer focused on store
+                            labor costs, I noticed their e-commerce return rates were 3x higher than
+                            competitors—customers were buying multiple sizes online and returning what didn't fit. This
+                            was creating significant processing costs outside our scope. I proposed analyzing the root
+                            cause. We discovered poor product information online. I suggested investing in better
+                            content and virtual fitting tools. The analysis showed a $15M annual opportunity from
+                            reduced returns."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">How would you help a company improve its
+                        innovation capability?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I'd address innovation across multiple dimensions: Strategy—What's
+                            the innovation ambition? Process—Establish stage-gate process from ideation to launch.
+                            Culture—Incentivize experimentation, celebrate intelligent failures. Structure—How is
+                            innovation organized? Metrics—Track innovation inputs and outputs. My approach would be
+                            diagnostic first: interview stakeholders, assess current process, benchmark against peers.
+                            Most common gaps: lack of strategic clarity, insufficient resources, risk-averse culture,
+                            poor cross-functional collaboration."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Describe how you'd conduct a post-mortem on a
+                        failed project or initiative.</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I'd use structured post-mortem focusing on learning, not blame:
+                            Preparation—Gather relevant data and timeline. Ensure psychologically safe environment.
+                            Session Structure: 1) Timeline review, 2) What went well, 3) What went wrong using root
+                            cause analysis, 4) Lessons learned, 5) Action items. Key principles: Focus on systems and
+                            processes, not individuals. Ask 'why' multiple times. Avoid hindsight bias. Document
+                            findings. The most mature organizations treat failures as learning opportunities."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FINAL STRETCH QUESTIONS -->
+        <div class="section">
+            <h2 class="section-title" onclick="toggleSection(this)">Final Stretch Questions</h2>
+            <div class="questions-container">
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">What's your approach to building and maintaining
+                        a professional network?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I'm strategic about networking—it's about building genuine
+                            relationships, not collecting contacts. Internal: I build relationships across my firm
+                            through project work, social events, and offering help. I have monthly coffee chats with
+                            people in different practices. External: I maintain contact with former clients and
+                            colleagues through periodic check-ins, sharing relevant articles. I attend 2-3 conferences
+                            annually. I contribute value—sharing insights, making introductions—rather than only
+                            reaching out when I need something. Networking is relationship-building over time."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">How do you ensure your recommendations are
+                        actually implemented?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "Implementation is where strategy becomes reality. Design for
+                            implementation: Involve client team in developing solutions. Test feasibility with those
+                            who'll execute. Create detailed plans: Move beyond strategic recommendations to tactical
+                            implementation plans with owners, timelines, KPIs. Address change management: Identify
+                            stakeholders who need to change behavior. Build capability: Don't just deliver
+                            answers—transfer knowledge. Establish tracking: Set up dashboards and review mechanisms. The
+                            insight is 80%, but implementation is 80%."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Tell me about a time you had to influence without
+                        authority.</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "On a cross-functional project, I needed IT and operations teams to
+                            collaborate but had no formal authority. The IT lead was skeptical. Rather than pushing
+                            harder, I: 1) Scheduled one-on-one to understand his concerns, 2) Invited him to co-design
+                            solutions rather than presenting finished recommendations, 3) Highlighted how this project
+                            could address IT challenges he'd mentioned. He became a collaborator. This is essential in
+                            consulting where you're rarely someone's boss but need to drive outcomes."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">How would you handle an ethical dilemma where a
+                        client asks you to do something questionable?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "I'd address it directly and escalate if needed. If a client asked
+                            me to do something unethical: 1) Clarify understanding, 2) Express concern and explain the
+                            issues, 3) Propose alternatives offering ethical paths to their goal, 4) Escalate—if they
+                            persist, involve my project lead and firm leadership. I'd document the situation. My
+                            professional reputation and integrity aren't negotiable. Fortunately, most 'ethical
+                            dilemmas' resolve through open conversation."</p>
+                    </div>
+                </div>
+                <div class="question-item">
+                    <div class="question" onclick="toggleAnswer(this)">Looking back on your consulting career so far,
+                        what would you do differently?</div>
+                    <div class="answer">
+                        <p><strong>Answer:</strong> "Three things: First, I'd seek feedback more proactively earlier. I
+                            waited for formal reviews rather than asking for input after every significant interaction.
+                            Frequent, informal feedback accelerates growth more than annual reviews. Second, I'd invest
+                            more in building relationships with senior leaders earlier. Third, I'd specialize earlier
+                            while maintaining breadth. I spent my first two years across many industries. Developing
+                            domain expertise sooner would have differentiated me more. That said, these experiences
+                            taught me valuable lessons."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>Complete Collection:</strong> All 100 Consultant Interview Questions for Senior Associate
+                Position</p>
+            <p>All sample answers should be tailored to your specific experiences and the target firm's culture.</p>
+        </div>
     </div>
 
     <script>
-        // Add smooth scrolling and animations
-        document.addEventListener('DOMContentLoaded', function() {
-            // Animate elements on scroll
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-
-            // Observe all sections
-            document.querySelectorAll('.section').forEach(section => {
-                section.style.opacity = '0';
-                section.style.transform = 'translateY(30px)';
-                section.style.transition = 'all 0.6s ease';
-                observer.observe(section);
-            });
-
-            // Add hover effects to project cards
-            document.querySelectorAll('.project-card').forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.background = 'linear-gradient(135deg, #f0f4ff 0%, #dbeafe 50%, #fef7ff 100%)';
-                    this.style.transform = 'translateY(-8px) scale(1.02)';
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.background = 'linear-gradient(135deg, #f8f9ff 0%, #e8f2ff 50%, #fff0f8 100%)';
-                    this.style.transform = 'translateY(0) scale(1)';
-                });
-            });
-
-            // Typing effect for the header text
-            const typingText = document.querySelector('.typing-text');
-            if (typingText) {
-                const text = typingText.textContent;
-                typingText.textContent = '';
-                let i = 0;
-                
-                function typeWriter() {
-                    if (i < text.length) {
-                        typingText.textContent += text.charAt(i);
-                        i++;
-                        setTimeout(typeWriter, 50);
-                    }
-                }
-                
-                setTimeout(typeWriter, 1000);
-            }
-        });
+        function toggleSection(element) {
+            element.classList.toggle('collapsed');
+            element.nextElementSibling.classList.toggle('hidden');
+        }
+        function toggleAnswer(element) {
+            element.nextElementSibling.classList.toggle('show');
+        }
     </script>
 </body>
+
 </html>
